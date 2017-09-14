@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+        <template id="assets_backend" name="warehouse ui" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/warehouse_ui_1/static/src/css/warehouse_ui.css"/>
+                <script type="text/javascript" src="/warehouse_ui_1/static/src/js/warehouse_ui.js"></script>
+                 <script type="text/javascript" src="/warehouse_ui_1/static/src/js/picking_override.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

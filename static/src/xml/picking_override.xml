@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<t t-extend="PickingEditorWidget">
+		 <t t-jquery="select[id='js_select'][class='form-control']" t-operation="replace">
+		 	<select id="js_select" class="form-control" style="display:none!important">
+                            <option value="ToDo" id="js_select_todo">Operations ToDo</option>
+                            <option value="Processed" id="js_select_processed">Operations Processed</option>
+             </select>
+		 </t>
+		 <t t-jquery="input[class='form-control oe_searchbox']" t-operation="replace">
+		 	 <input type="text" class="form-control oe_searchbox" placeholder="Filter by location..." style="display:none!important"/>
+		 </t>
+		<t t-jquery="span.input-group-btn" t-operation="replace">
+			<span class="input-group-btn">
+                                <button class="btn btn-danger js_clear_search" type="button" style="display:none!important">x</button>
+            </span>
+		</t> 
+	</t>
+</templates>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="warehouse_ui_form" model="ir.ui.view">
+        <field name="name">warehouse.ui.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"></field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='do_enter_transfer_details']" position="replace">
+                    <button name="open_barcode_interface" string="Transfer" groups="stock.group_stock_user" type="object" class="oe_stock_scan_button" attrs="{'invisible': ['|',('pack_operation_exist', '=', False),('state','not in',('assigned', 'partially_available'))]}"></button>
+            </xpath>
+
+            <xpath expr="//div[@class='oe_right oe_button_box']" position="replace">
+                
+            </xpath>
+
+        </field>
+     </record>
+
+        <record id="warehouse_ui_kanban" model="ir.ui.view">
+            <field name="name">warehouse.ui.kanban</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.stock_picking_type_kanban"></field>
+            <field name="arch" type="xml">
+                <xpath expr="//kanban[1]" position="attributes">
+                     <attribute name="create">1</attribute>
+                </xpath>
+                 <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_right']/a[@name='open_barcode_interface']" position="replace">
+                </xpath>
+                 <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_items_list oe_kanban_ellipsis']/div[1]/a[2]" position="replace"> 
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_items_list oe_kanban_ellipsis']/div[1]/a[1]/field[1]" position="replace">  <field name="count_picking_ready"> To Do</field>
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_picking_type_gauge']/field[1]" position="replace">
+                </xpath>
+                <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_picking_type_gauge']/field[@name='rate_picking_backorders']" position="replace">
+                </xpath>
+                
+            </field>
+        </record>
+
+    
+    </data>
+</openerp>
