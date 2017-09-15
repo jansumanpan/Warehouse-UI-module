@@ -82,11 +82,7 @@
     <t t-jquery="t[t-if='widget.options.action_buttons !== false']" t-operation="inner">
     	<t t-if="widget.is_action_enabled('create')">
     		<t t-if="widget.fields_view.model=='stock.picking.type'">
-    			<ul class="nav nav-tabs">
-				  <li class="active"><a href="#">All Warehouse</a></li>
-				  <li><a href="#">Menu 1</a></li>
-				  <li><a href="#">Menu 2</a></li>
-				  <li><a href="#">Menu 3</a></li>
+    			<ul class="nav nav-tabs" id="warehouse_tabs">
 				</ul>
     		</t>
     		<t t-if="widget.fields_view.model!=='stock.picking.type'">

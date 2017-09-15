@@ -25,6 +25,7 @@
                 <xpath expr="//kanban[1]" position="attributes">
                      <attribute name="create">1</attribute>
                 </xpath>
+                
                  <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_right']/a[@name='open_barcode_interface']" position="replace">
                 </xpath>
                  <xpath expr="//div[@class='oe_kanban_content']/div[@class='oe_items_list oe_kanban_ellipsis']/div[1]/a[2]" position="replace"> 

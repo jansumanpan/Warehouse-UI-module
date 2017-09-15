@@ -1,30 +1,47 @@
-// openerp.warehouse_ui = function (instance){
-// var QWeb = openerp.web.qweb;
-// _t = instance.web._t;
-// openerp.web_kanban.KanbanView.include({
-// load_kanban: function(data) {
-// this._super(data);
-// if (this.$buttons) {
-// this.$buttons.find('.oe_kanban_button_new').off().click(this.proxy('give_warehouse_domain')) ;
-// console.log('Save & Close button method call...');
-// }
-// },
-// give_warehouse_domain: function () {
-// console.log(" do the job action")
-// // this.do_action({
-// // type: "ir.actions.act_window",
-// // name: "Sample Button",
-// // res_model: "project.project",
-// // views: false,'form',
-// // target: 'current',
-// // view_type : 'form',
-// // view_mode : 'form',
-// // flags: {'form': {'action_buttons': true, 'options': {'mode': 'edit'}}}
-// // });
-// // return {
-// // 'type': 'ir.actions.client',
-// // 'tag': 'reload',
-// // }
-// }
-// });
-// }
+$( window ).on( "load",function() {
+	 var tab_data = [];
+    setInterval(function() {
+	$("#warehouse_tabs").ready(function(){
+			var  isVisible = $("#warehouse_tabs").is(':visible');
+			var isEmpty = $('#warehouse_tabs').is(':empty');
+			if (isVisible === true) {
+			   // element is Visible
+			   setTimeout(function(){
+			   		    $.getJSON("/warehouse/tab_data", function(result) {
+			                if (tab_data.length === 0){
+				                var obj = result;
+				                tab_data.push('<li class="active"><a href="#">All Warehouses</a></li>');
+								$.each( obj, function( id, value ) {
+									
+								      $.each (value, function (k,v) {
+								      		tab_data.push('<li><a href="#">' + v + '</a></li>')
+									});
+								});
+				                $("#warehouse_tabs").append(tab_data.join(''));
+			                }else{
+			                	console.log(tab_data + ':Else tab_data length is many');
+			       //          	  function isEmpty( el ){
+								  //     return !$.trim(el.html())
+								  // }
+			                	if ($('#warehouse_tabs li').size() == 0){
+								  	console.log('empty')
+								  	// $("#warehouse_tabs").append(tab_data.join(''));
+								}
+								else{
+									console.log('not empty')
+								}	
+			                }
+			               
+			        });
+			   }, 3000);
+			} else {
+			  // element is Hidden
+
+				 tab_data = [];
+				 console.log(tab_data + ':not Visible');
+			}
+   		   console.log(tab_data + ':end');
+	});
+    
+    }, 2000);
+});
