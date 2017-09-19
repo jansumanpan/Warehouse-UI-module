@@ -1,16 +1,18 @@
+ var tab_data = [];
 $( window ).on( "load",function() {
-	 var tab_data = [];
+	
     setInterval(function() {
 	$("#warehouse_tabs").ready(function(){
 			var  isVisible = $("#warehouse_tabs").is(':visible');
 			var isEmpty = $('#warehouse_tabs').is(':empty');
-			if (isVisible === true) {
+			var kanbanButtonsVisible = $("div.oe_kanban_buttons").is(':visible');
+			if (isVisible === true && kanbanButtonsVisible === true) {
 			   // element is Visible
 			   setTimeout(function(){
 			   		    $.getJSON("/warehouse/tab_data", function(result) {
 			                if (tab_data.length === 0){
 				                var obj = result;
-				                tab_data.push('<li class="active"><a href="#">All Warehouses</a></li>');
+				                tab_data.push('<li class="active"><a>All Warehouses</a></li>');
 								$.each( obj, function( id, value ) {
 									
 								      $.each (value, function (k,v) {
@@ -18,6 +20,7 @@ $( window ).on( "load",function() {
 									});
 								});
 				                $("#warehouse_tabs").append(tab_data.join(''));
+				                console.log(tab_data + ': Show Tab Data');
 			                }else{
 			                	console.log(tab_data + ':Else tab_data length is many');
 			       //          	  function isEmpty( el ){
